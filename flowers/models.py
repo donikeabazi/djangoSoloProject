@@ -26,7 +26,7 @@ class PostManager(models.Manager):
     def validator(self, postData):
         errors = {}
         
-        if(len(postData['title'])) < 5:
+        if(len(postData['title'])) < 4:
             errors['title'] = "Title of the post should contain at least 5 characters."
         if(len(postData['description'])) < 10:
             errors['description'] = "Description of the post should contain at least 10 characters"
@@ -44,7 +44,7 @@ class User(models.Model):
 
 	objects = UserManager()
 
-class Post(models.Post):
+class Post(models.Model):
     title = models.CharField(max_length=15)
     description = models.CharField(max_length=100)
     content = models.TextField()
@@ -52,6 +52,6 @@ class Post(models.Post):
     updated_at = models.DateTimeField(auto_now=True)
     posted_by = models.ForeignKey(User, related_name="has_posts", on_delete=models.CASCADE)
     liked_by = models.ManyToManyField(User, related_name="has_likes")
-    collection = models.ForeignKey(User, related_name="has_collected", on_delete=models.CASCADE)
+    collection = models.ForeignKey(User, related_name="has_collected", on_delete=models.CASCADE, null=True)
 
     objects = PostManager()

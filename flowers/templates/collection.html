@@ -28,16 +28,16 @@
     <div class="jumbotron">
         <div class="row">
             <h1 class="display-3">Hello, {{logged_user.first_name}}!</h1>
-            <a href="/posts/new">Post something</a>
         </div>
-        <p class="lead">Most Recent Posts:</p>
+        <p class="lead">Collection:</p>
         <hr class="my-4">
-        {% for post in all_posts %}
+        {% for post in collection %}
             <h3>{{post.title}}</h3>
             <h5>{{post.description}}</h5>
             <p>{{post.liked_by.count}} likes</p>
-            <a href="/collection/save">Save</a>
+            <a href="/collection/unsave">Unsave</a>
             <a href="/posts/{{post.id}}">View</a>
+            <hr class="my-3">
         {% endfor %}
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

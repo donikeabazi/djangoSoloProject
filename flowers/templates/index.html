@@ -7,50 +7,69 @@
     <title>Planthea</title>
 </head>
 <body>
-    <h1>Hi there,</h1>
-    <h1>Welcome to Planthea!</h1>
-
-    <form action="/register" method="post">
-        <fieldset>
-            <legend>Sign Up</legend>
-            <div class="form-group">
-                <label for="fname">First Name</label>
-                <input type="text" name="first_name" class="form-control" id="fname" placeholder="First Name">
+    <div class="container">
+        <h1>Hi there,</h1>
+        <h1>Welcome to Planthea!</h1>
+    
+        <div class="row">
+            <div class="col-6 px-3">
+                <form action="/register" method="post">
+                    {% csrf_token %}
+                    <fieldset>
+                        <legend>Sign Up</legend>
+                        <div class="form-group">
+                            <label for="fname">First Name</label>
+                            <input type="text" name="first_name" class="form-control" id="fname" placeholder="First Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="lname">Last Name</label>
+                            <input type="text" name="last_name" class="form-control" id="lname" placeholder="Last Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" class="form-control" id="email" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm_password">Confirm Password</label>
+                            <input type="password" name="confirm_password" class="form-control" id="confirm_password" placeholder="Confirm Password">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </fieldset>
+                </form>
             </div>
-            <div class="form-group">
-                <label for="lname">Last Name</label>
-                <input type="text" name="last_name" class="form-control" id="lname" placeholder="Last Name">
+            <div class="col-6 px-3">
+                <form action="/login" method="post">
+                    {% csrf_token %}
+                    <fieldset>
+                        <legend>Sign In</legend>
+                        <div class="form-group">
+                            <label for="log_email">Email</label>
+                            <input type="email" name="login_email" class="form-control" id="log_email" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="log_password">Password</label>
+                            <input type="password" name="login_pw" class="form-control" id="log_password" placeholder="Password">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </fieldset>
+                </form>
             </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" name="email" class="form-control" id="email" placeholder="Email">
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" name="password" class="form-control" id="password" placeholder="Password">
-            </div>
-            <div class="form-group">
-                <label for="confirm_password">Confirm Password</label>
-                <input type="password" name="confirm_password" class="form-control" id="confirm_password" placeholder="Confirm Password">
-            </div>
-            <button type="submit" class="btn btn-primary">Register</button>
-        </fieldset>
-    </form>
-
-    <form action="/login" method="post">
-        <fieldset>
-            <legend>Sign In</legend>
-            <div class="form-group">
-                <label for="log_email">Email</label>
-                <input type="email" name="login_email" class="form-control" id="log_email" placeholder="Email">
-            </div>
-            <div class="form-group">
-                <label for="log_password">Password</label>
-                <input type="password" name="login_pw" class="form-control" id="log_password" placeholder="Password">
-            </div>
-            <button type="submit" class="btn btn-primary">Login</button>
-        </fieldset>
-    </form>
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="text-danger text-small">{{message}}</p>
+                    <div class="alert alert-dismissible alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>Oh snap!</strong> {{message}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+    
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
